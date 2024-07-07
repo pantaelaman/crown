@@ -8,15 +8,15 @@ use const_format::concatcp;
 
 /// Get an environment variable during compile time, else return a default.
 macro_rules! env_or {
-    ($name:expr, $default:expr) => {
-        // This is needed because `Option.unwrap_or` is not a const fn:
-        // https://github.com/rust-lang/rust/issues/91930
-        if let Some(value) = option_env!($name) {
-            value
-        } else {
-            $default
-        }
-    };
+  ($name:expr, $default:expr) => {
+    // This is needed because `Option.unwrap_or` is not a const fn:
+    // https://github.com/rust-lang/rust/issues/91930
+    if let Some(value) = option_env!($name) {
+      value
+    } else {
+      $default
+    }
+  };
 }
 
 /// The name for this greeter
@@ -51,6 +51,6 @@ pub const GREETING_MSG: &str = "Welcome back!";
 
 /// Directories separated by `:`, containing desktop files for X11/Wayland sessions
 pub const SESSION_DIRS: &str = env_or!(
-    "SESSION_DIRS",
-    "/usr/share/xsessions:/usr/share/wayland-sessions"
+  "SESSION_DIRS",
+  "/usr/share/xsessions:/usr/share/wayland-sessions"
 );
